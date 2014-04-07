@@ -17,7 +17,7 @@
 	message.messageName = @"OBJCIPC.HANDSHAKE";
 	message.messageIdentifier = @"00HS"; // fixed
 	message.replyHandler = nil;
-	message.dictionary = dictionary;
+	message.dictionary = (dictionary == nil ? @{} : dictionary);
 	
 	return [message autorelease];
 }
@@ -29,7 +29,7 @@
 	message.messageName = messageName;
 	message.messageIdentifier = messageIdentifier;
 	message.replyHandler = handler;
-	message.dictionary = dictionary;
+	message.dictionary = (dictionary == nil ? @{} : dictionary);
 	
 	return [message autorelease];
 }
