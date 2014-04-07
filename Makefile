@@ -5,6 +5,8 @@ export TARGET = :clang
 export ARCHS = armv7 arm64
 export ADDITIONAL_OBJCFLAGS = -fvisibility=default -fvisibility-inlines-hidden -fno-objc-arc -O2
 
+#DEBUG=1
+
 LIBRARY_NAME = libobjcipc
 libobjcipc_FILES = IPC.m Connection.m Message.m
 libobjcipc_FRAMEWORKS = CoreFoundation Foundation UIKit
