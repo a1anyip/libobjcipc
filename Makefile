@@ -13,11 +13,8 @@ libobjcipc_FRAMEWORKS = CoreFoundation Foundation UIKit
 libobjcipc_INSTALL_PATH = /usr/lib/
 libobjcipc_LIBRARIES = substrate
 
-SUBPROJECTS = substrate
-
 include theos/makefiles/common.mk
 include $(THEOS_MAKE_PATH)/library.mk
-include $(THEOS_MAKE_PATH)/aggregate.mk
 
 after-install::
 	install.exec "killall -9 backboardd"
