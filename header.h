@@ -1,5 +1,11 @@
 #define LOG_MESSAGE_BODY 0
-#define IPCLOG(x,...) NSLog(@"*** libobjcipc: %@",[NSString stringWithFormat:(x), ##__VA_ARGS__])
+
+#ifdef DEBUG
+	#define IPCLOG(x,...) NSLog(@"*** libobjcipc: %@",[NSString stringWithFormat:(x), ##__VA_ARGS__])
+#else
+	// Replace with call to [NSString stringWithFormat:] so that any variables passed aren't marked as unused.
+	#define IPCLOG(x,...) [NSString stringWithFormat:(x), ##__VA_ARGS__]
+#endif
 
 #define PrefPath @"/var/mobile/Library/Preferences/libobjcipc.plist"
 #define XPCObjects "/System/Library/PrivateFrameworks/XPCObjects.framework/XPCObjects"

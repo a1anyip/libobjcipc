@@ -65,7 +65,7 @@ static OBJCIPC *sharedInstance = nil;
 		// activate OBJCIPC automatically in SpringBoard
 		[self activate];
 		
-	} else {
+	} else if ([self isApp]) {
 		
 		// the notification sent from SpringBoard will activate OBJCIPC in the running
 		// and active app with the specified bundle identifier automatically
@@ -74,6 +74,8 @@ static OBJCIPC *sharedInstance = nil;
 		// the notification sent from SpringBoard will deactivate OBJCIPC in the running
 		// and active app with the specified bundle identifier automatically
 		[self _setupAppDeactivationListener];
+	} else {
+		// Daemon or other process with no bundle identifier.
 	}
 }
 
@@ -104,7 +106,7 @@ static OBJCIPC *sharedInstance = nil;
 }
 
 + (BOOL)isApp {
-	return ![self isSpringBoard] && ![self isBackBoard];
+	return ![self isSpringBoard] && ![self isBackBoard] && [[NSBundle mainBundle] bundleIdentifier];
 }
 
 + (instancetype)sharedInstance {
