@@ -284,7 +284,15 @@ static char pendingIncomingMessageIdentifierKey;
 		uint8_t header[readLen];
 		int headerLen = [_inputStream read:header maxLength:readLen];
 		_receivedHeaderLength += headerLen;
-		
+
+		//check for error in reading from input stream
+		if (headerLen <= 0)
+		{
+			//error occurred in reading data
+			[self closeConnection];
+			return;
+		}
+
 		if (_receivedHeaderData == nil) _receivedHeaderData = [NSMutableData new];
 		[_receivedHeaderData appendBytes:(const void *)header length:headerLen];
 		
