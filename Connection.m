@@ -285,10 +285,8 @@ static char pendingIncomingMessageIdentifierKey;
 		int headerLen = [_inputStream read:header maxLength:readLen];
 		_receivedHeaderLength += headerLen;
 
-		//check for error in reading from input stream
-		if (headerLen <= 0)
-		{
-			//error occurred in reading data
+		// prevent unexpected error when reading from input stream
+		if (headerLen <= 0) {
 			[self closeConnection];
 			return;
 		}
